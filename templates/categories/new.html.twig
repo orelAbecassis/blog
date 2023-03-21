@@ -3,10 +3,15 @@
 {% block title %}New Categories{% endblock %}
 
 {% block body %}
+<div  style="position: relative; left: 5%" >
     <h1>Create new Categories</h1>
 
+        <a href="{{ path('app_categories_index') }} " class="btn btn-dark" >Voir Detail</a>
 
+    <br><br>
+    <div class="form">
     {{ include('categories/_form.html.twig') }}
+    </div>
+</div>
 
-    <a href="{{ path('app_categories_index') }}">back to list</a>
 {% endblock %}

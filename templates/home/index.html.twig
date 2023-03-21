@@ -4,5 +4,47 @@
 
 
 {% block body %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
 
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                <li class="nav-item">
+                </li>
+                <a class="navbar-brand" href="{{ path('app_login') }}">Connexion</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Cakes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Entremets </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Crepes, Gauffres, Beignets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Glace et Sorbets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Layers Cake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Macaron, Petis Biscuits, Sablés </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Tartes et Tartelettes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="{{ path('app_produits_new') }}">Ajouter Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="{{ path('app_categories_new') }}">Ajouter Categories</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
 {% endblock %}

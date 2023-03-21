@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Produits;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +19,9 @@ class ProduitsType extends AbstractType
             ->add('legende')
             ->add('description')
             ->add('image')
-            ->add('id_categ')
+            ->add('id_categ', EntityType::class, [
+                'class' => Produits::class,
+            ])
         ;
     }
 
