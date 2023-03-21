@@ -107,4 +107,7 @@ class Produits
 
         return $this;
     }
+    public function __toString() {
+        return $this->getNomProduit(); // par exemple
+       }
 }

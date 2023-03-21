@@ -25,7 +25,7 @@
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.legende }}</td>
                 <td>{{ produit.description }}</td>
-                <td>{{ produit.image }}</td>
+                <td><img class="img-fluid" src="{{ produit.image }}"></td>
                 <td>
                     <a href="{{ path('app_produits_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('app_produits_edit', {'id': produit.id}) }}">edit</a>

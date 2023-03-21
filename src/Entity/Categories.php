@@ -72,4 +72,7 @@ class Categories
 
         return $this;
     }
+    public function __toString() {
+        return $this->getNomCateg(); // par exemple
+    }
 }
