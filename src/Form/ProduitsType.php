@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categories;
 use App\Entity\Produits;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -20,7 +21,7 @@ class ProduitsType extends AbstractType
             ->add('description')
             ->add('image')
             ->add('id_categ', EntityType::class, [
-                'class' => Produits::class,
+                'class' => Categories::class,
             ])
         ;
     }

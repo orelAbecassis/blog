@@ -1,38 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produits{% endblock %}
+{#{% block title %}Produits{% endblock %}#}
 
 {% block body %}
-    <h1>Produits</h1>
+    <h1>Produit</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom_produit</th>
-                <td>{{ produit.nomProduit }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prix }}</td>
-            </tr>
-            <tr>
-                <th>Legende</th>
-                <td>{{ produit.legende }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ produit.description }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ produit.image }}</td>
-            </tr>
-        </tbody>
-    </table>
+
+        <section class=" contenaire sproduct my-5 pt-5">
+            <div class="row mt-5">
+                <div class="col-lg-5 col-md-12 col-12">
+                    <img class="img-fluid w-100" src="{{ produit.image }}" alt="">
+
+                </div>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <h5 class=" py-4" name="nom">{{ produit.nomProduit }}</h5>
+                    <h2 class="card-title" name="prix" id="total">{{ produit.prix }} €</h2> <br>
+                    <input type="number" id="qt" value="1" min="1" style="width: 40px" name="qt">
+                    <h4>Description</h4>
+                    <span >{{ produit.description }}</span>
+                </div>
+            </div>
+        </section>
+
+
 
     <a href="{{ path('app_produits_index') }}">back to list</a>
 

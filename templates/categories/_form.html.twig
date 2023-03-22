@@ -3,17 +3,13 @@
 {{ form_start(form) }}
 <div  style="position: relative; left: 5%; width: 50%" >
     <div class="form-group mb-4">
-        {{ form_label(form.nom_categ, 'Nom de l\'article', {'label_attr': {'class': 'text-right'}}) }}
+        {{ form_label(form.nom_categ, 'Nom de la catégorie', {'label_attr': {'class': 'text-right'}}) }}
         {{ form_widget(form.nom_categ, {'attr': {'class': 'form-control mt-2'}, 'placeholder': 'Entrez le nom de l\'article'}) }}
     </div>
 </div>
-
-
-
-
-
 <br>
-<button type="button" data-bs-toggle="modal" data-bs-target="#idAddArticle" class="btn btn-dark " style=" position:relative;left: 15%" >
+<button type="submit
+"  class="btn btn-dark " style=" position:relative;left: 15%" >
     {{ button_label|default("Enregister") }}
 </button>
 {{ form_end(form) }}
