@@ -5,13 +5,15 @@
 {% block body %}
 
 
-<h1>Création d'un nouveau Produit</h1>
+<div style="display: flex">
+    <h1>Nouveau Produit</h1>
 
-    <a href="{{ path('app_produits_index') }} " class="btn btn-dark" >Voir Detail</a>
+    <a href="{{ path('app_produits_index') }} " class="btn btn-dark" style="position: relative; left: 50%" >Voir Detail</a>
+</div>
     <br><br>
+
+    <div class="content-form" style="display: flex;justify-content: center;">
         {{ include('produits/_form.html.twig') }}
-
-
-
+    </div>
 
 {% endblock %}

@@ -1,26 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories{% endblock %}
+{% block title %}Categorie {{ category.nomCateg }}{% endblock %}
 
 {% block body %}
-    <h1>Categories</h1>
+{#    <h1>Categories</h1>#}
+    <br>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom_categ</th>
-                <td>{{ category.nomCateg }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- product section start -->
+    <div class="product_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="product_taital">Nos Produits</h1>
+                    {#                    <p class="product_text">incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>#}
+                </div>
+            </div>
+            <div class="product_section_2 layout_padding">
+                <div class="row">
+                    {% for produit in produits %}
+                        <div class="col-lg-3 col-sm-6">
 
-    <a href="{{ path('app_categories_index') }}">back to list</a>
+                            <div class="product_box">
+                                <h4 class="bursh_text">
+                                    {% set maxLength = 20 %}
+                                    {% set truncatedString = produit.nom|slice(0, maxLength)|split(' ')|slice(0, -1)|join(' ') %}
+                                    {% if produit.nom|length > maxLength %}
+                                        {{ truncatedString }}...
+                                    {% else %}
+                                        {{ produit.nom }}
+                                    {% endif %}
+                                </h4>
+                                <p class="lorem_text">
+                                    {% set maxLength = 60 %}
+                                    {% set truncatedString = produit.Legende|slice(0, maxLength)|split(' ')|slice(0, -1)|join(' ') %}
+                                    {% if produit.Legende|length > maxLength %}
+                                        {{ truncatedString }}...
+                                    {% else %}
+                                        {{ produit.Legende }}
+                                    {% endif %}
+                                </p>
+                                <img src="{{ produit.image }}" class="image_1">
+                                <div class="btn_main">
+                                    <div class="buy_bt">
+                                        <ul>
+                                            <li class="active" ><a href="{{ path('app_produits_show', {'id': produit.id}) }}">plus d'info <i class="fa-solid fa-circle-info"></i> </a></li>
+                                            {#                                        <li><a href="{{ path('app_produits_show', {'id': produit.id}) }}">plus d'info</a></li>#}
+                                        </ul>
+                                    </div>
+                                    <h3 class="price_text">Prix : {{ produit.prix }} €</h3>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
 
-    <a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
+                {#                <div class="seemore_bt"><a href="#">See More</a></div>#}
+            </div>
+        </div>
+    </div>
+    <!-- product section end -->
 
-    {{ include('categories/_delete_form.html.twig') }}
+
 {% endblock %}

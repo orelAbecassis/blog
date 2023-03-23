@@ -18,6 +18,7 @@ class CategoriesController extends AbstractController
     {
         return $this->render('categories/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
+            'cat' =>$categoriesRepository->findAll(),
         ]);
     }
 
@@ -37,14 +38,22 @@ class CategoriesController extends AbstractController
         return $this->renderForm('categories/new.html.twig', [
             'category' => $category,
             'form' => $form,
+            'cat' =>$categoriesRepository->findAll(),
         ]);
     }
 
     #[Route('/{id}', name: 'app_categories_show', methods: ['GET'])]
-    public function show(Categories $category): Response
+    public function show(Categories $category, CategoriesRepository $categoriesRepository, $id): Response
     {
+        $lesProduits = $categoriesRepository->getUnProduitCateg($id);
+
+//        dd($lesArticles);
+
         return $this->render('categories/show.html.twig', [
             'category' => $category,
+            'produits' => $lesProduits,
+            'cat' => $categoriesRepository->findAll()
+
         ]);
     }
 
@@ -75,4 +84,7 @@ class CategoriesController extends AbstractController
 
         return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }

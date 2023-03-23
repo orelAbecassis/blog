@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Categories;
+use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -38,6 +39,58 @@ class CategoriesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
+//    public function getUnProduitCateg(int $id_categ)
+//    {
+//        $entityManager = $this->getEntityManager();
+//        $categ = $entityManager->getRepository(Categories::class)->find($id_categ);
+//
+//        $articles = $categ->;
+//
+//        return $articles;
+//    }
+
+    public function getUnProduitCateg(int $id_categ){
+        $entityManager = $this->getEntityManager();
+
+        //BONNE FACON DE FAIRE AVEC REQUETE SQL
+
+        // Récupérer la catégorie correspondante à l'id donné
+        $categ = $entityManager->getRepository(Categories::class)->find($id_categ);
+
+        // Vérifier si la catégorie existe
+        if (!$categ) {
+            throw $this->createNotFoundException('La catégorie n\'existe pas');
+        }
+
+        // Récupérer la collection d'articles associés à cette catégorie
+        $produits = $categ->getProduits();
+
+        // Initialiser un tableau pour stocker les informations des articles
+        $articlesData = [];
+
+        // Boucler sur la collection d'articles pour extraire les informations souhaitées
+        foreach ($produits as $produit) {
+            $produitsData[] = [
+                'id' => $produit->getId(),
+                'nom' => $produit->getNomProduit(),
+                'Legende' => $produit->getLegende(),
+                'description' => $produit->getDescription(),
+                'image' => $produit->getImage(),
+                'prix' => $produit->getPrix(),
+                'categorie' => $produit->getIdCateg()->getProduits()
+            ];
+        }
+
+        return $produitsData;
+    }
+
+
+
+
+
+
 
 //    /**
 //     * @return Categories[] Returns an array of Categories objects

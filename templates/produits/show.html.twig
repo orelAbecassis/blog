@@ -1,32 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{#{% block title %}Produits{% endblock %}#}
+{% block title %}{{ produit.nomProduit }}{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
 
-
-        <section class=" contenaire sproduct my-5 pt-5">
-            <div class="row mt-5">
-                <div class="col-lg-5 col-md-12 col-12">
-                    <img class="img-fluid w-100" src="{{ produit.image }}" alt="">
-
-                </div>
-                <div class="col-lg-6 col-md-12 col-12">
-                    <h5 class=" py-4" name="nom">{{ produit.nomProduit }}</h5>
-                    <h2 class="card-title" name="prix" id="total">{{ produit.prix }} €</h2> <br>
-                    <input type="number" id="qt" value="1" min="1" style="width: 40px" name="qt">
-                    <h4>Description</h4>
-                    <span >{{ produit.description }}</span>
+    <!-- about section start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="about_section_main">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main">
+                            <h1 class="about_taital">{{ produit.nomProduit }}</h1>
+                            <p class="about_text">{{ produit.legende }}</p>
+                            <p class="about_text">{{ produit.description }}</p>
+                            <div class="about_text d-flex mt-5">
+                                <a href="{{ path('app_produits_edit', {'id': produit.id}) }}"  class="btn btn-dark" style="margin-right: 20px">Modifier</a>
+                                {{ include('produits/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><img src="{{ produit.image }}" class="image_3"></div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+    <!-- about section end -->
 
 
 
-    <a href="{{ path('app_produits_index') }}">back to list</a>
 
-    <a href="{{ path('app_produits_edit', {'id': produit.id}) }}">edit</a>
 
-    {{ include('produits/_delete_form.html.twig') }}
+
+
+
+
+
+{#    <a href="{{ path('app_produits_index') }}">back to list</a>#}
+
 {% endblock %}

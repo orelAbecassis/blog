@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{#{% block title %}Produits index{% endblock %}#}
+{% block title %}Liste des produits{% endblock %}
 
 {% block body %}
 {#    <h1>Produits</h1>#}
@@ -8,34 +8,61 @@
 
 
 
-    <div class="content">
+    <!-- product section start -->
+    <div class="product_section layout_padding">
         <div class="container">
-            <div class="row row-cols-auto" style="justify-content: center;">
-                {% for produit in produits %}
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ produit.image }}" alt="" >
-                        <div class="card-body">
-                            <h5 class="card-title" style="min-height: 73px">{{ produit.nomProduit }}</h5>
-                        </div>
-                        </a>
-                        <ul class="list-group list-group-flush">
-                           <div style="display: flex">
-                               <li class="list-group-item">{{ produit.prix }} €</li>
-                               <a href="{{ path('app_produits_show', {'id': produit.id}) }}" style="position: relative; left: 50%" class="btn btn-dark" >Afficher</a>
-                           </div>
-                        </ul>
-                    </div>
-                    <br><br>
-
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="product_taital">Nos Produits</h1>
+{#                    <p class="product_text">incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>#}
                 </div>
-                {% endfor %}
+            </div>
+            <div class="product_section_2 layout_padding">
+                <div class="row">
+                    {% for produit in produits %}
+                    <div class="col-lg-3 col-sm-6">
 
+                        <div class="product_box">
+                            <h4 class="bursh_text">
+                                {% set maxLength = 20 %}
+                                {% set truncatedString = produit.nomProduit|slice(0, maxLength)|split(' ')|slice(0, -1)|join(' ') %}
+                                {% if produit.nomProduit|length > maxLength %}
+                                    {{ truncatedString }}...
+                                {% else %}
+                                    {{ produit.nomProduit }}
+                                {% endif %}
+                            </h4>
+                            <p class="lorem_text">
+                                {% set maxLength = 60 %}
+                                {% set truncatedString = produit.legende|slice(0, maxLength)|split(' ')|slice(0, -1)|join(' ') %}
+                                {% if produit.legende|length > maxLength %}
+                                    {{ truncatedString }}...
+                                {% else %}
+                                    {{ produit.legende }}
+                                {% endif %}
+                            </p>
+                            <img src="{{ produit.image }}" class="image_1">
+                            <div class="btn_main">
+                                <div class="buy_bt">
+                                    <ul>
+                                        <li class="active" ><a href="{{ path('app_produits_show', {'id': produit.id}) }}">plus d'info <i class="fa-solid fa-circle-info"></i> </a></li>
+{#                                        <li><a href="{{ path('app_produits_show', {'id': produit.id}) }}">plus d'info</a></li>#}
+                                    </ul>
+                                </div>
+                                <h3 class="price_text">Prix : {{ produit.prix }} €</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+{#                <div class="seemore_bt"><a href="#">See More</a></div>#}
             </div>
         </div>
     </div>
+    <!-- product section end -->
 
-{#    <table class="table">#}
+    {#    <table class="table">#}
 {#        <thead>#}
 {#            <tr>#}
 {#                <th>Id</th>#}
